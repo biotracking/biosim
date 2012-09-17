@@ -1,0 +1,55 @@
+This file give a simple description for the predator and prey project.
+The project directory is at http://svn.bio-tracking.org/biosim/src/app/Predator_Prey/
+
+=========================================================================
+Files
+=========================================================================
+Hunt.java		the drive class for the hunt process
+HuntConfig.java		the initial environment setup (like obstacles, number of agents, speed limitation and so on) for the hunt
+PredatorController.java	in which the takeStep() function tell the body of predator what to do every cycle
+PreyController.java	in which the takeStep() function tell the body of prey what to do every cycle
+BatchRun.java		run the simulation without UI multiple times and save statistics data
+Makefile		the make file
+
+=========================================================================
+compile
+=========================================================================
+In the root of biosim directory, 
+source config-classpath.sh
+make
+
+Then the whole biosim is compiled. If you found it is time taking, compile only the Hunt simulation:
+In the biosim/src/app/Predator_Prey:
+source ./../../../config-classpath.sh
+make
+
+=========================================================================
+run
+=========================================================================
+In the root of biosim directory:
+source config-classpath.sh
+java app.Predator_Prey.Hunt
+
+=========================================================================
+run in batch
+=========================================================================
+In the root of biosim directory:
+source config-classpath.sh
+java app.Predator_Prey.BatchRun $seconds_per_simulation $simulation_amount > $target_log
+For example:
+java app.Predator_Prey.BatchRun 100 10 > /log/PredatorPreyLog.txt
+This command will run the simulation without UI for 10 times in which each simulaiton will stop at 100 seconds. And the statistics will be recorded at biosim/log/PredatorPreyLog.txt
+
+=========================================================================
+Frequent problems
+=========================================================================
+Meet compile or run errors: the console is not in the right directory or the "source" is not specified.
+How the body is defined: the predator and prey body is located in biosim/src/core/basic_api/body/*.java
+The log data of run in batch is missed or wrong: (1)Make sure it's the exact log file which is specified in the command: java app.Predator_Prey.BatchRun $seconds_per_simulation $simulation_amount > $target_log; (2)Tune the parameters because if the $seconds_per_simulaiton is too small, the predators may not hunt down all the preys which will not be logged.
+
+=========================================================================
+what to do
+=========================================================================
+Your work should limited in PredatorController.java and PreyController.java. Other files are defined and should not be modified.
+For other objectives, Professor Balch will give more details in class or wiki.
+

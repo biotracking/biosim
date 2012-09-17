@@ -1,0 +1,20 @@
+This readme file describe (1)how to compile, (2)how to run the test the example application, and (3)frequent Q&A. For short, the root directory locathion of BioSim is expressed as $BioSim
+ 
+To make(in the $BioSim/ directory):
+	cd $BioSim/
+	source config-classpath.sh
+	make
+
+After make, test the app(in the $BioSim/ directory):
+	java app.AntsEncounter.AntsEncounter
+
+
+
+Frequent Q&A:
+	1. Make problem: exceptions might show up during the make.
+	a) Some of the errors are inside the $BioSim/src/core directory. To eliminate the error: Make sure use the command "source config-classpath.sh" under $BioSim/ directory before make. 
+	b) Some of the making errors are not inside the $BioSim/src/core directory. These errors might be caused by the path issue or the real Syntax error.
+
+	2. Log file problem: if met the error, java.io.FileNotFoundException: ./log/.... , it might be caused by the wrong running directory. Commands like "java app.AntsEncounter.AntsEncounter" must be excuted under the $BioSim/ directory 
+	
+	3. Make problem with new added directory/file: the Makefile is not auto-generated. For the new added directory/file, the creation/modification in the corresponding directory Makefile are necessary. If not knowing how to modify/create is an issue, refer the parent-directory Makefile as example.
